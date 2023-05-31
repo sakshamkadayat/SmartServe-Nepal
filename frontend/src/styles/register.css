@@ -1,0 +1,57 @@
+.registration-main-container {
+    display: flex;
+    justify-content: center;
+    height: 92vh;
+    margin-top: 30px;
+}
+.register-left-container {
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px,
+        rgba(0, 0, 0, 0.3) 0px 7px 13px -3px,
+        rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+    height: 80vh;
+    width: 42vw;
+    background: linear-gradient(
+        135deg,
+        rgba(255, 0, 0, 0.2),
+        rgba(0, 0, 255, 0.2),
+        rgba(255, 255, 255, 0.2)
+    );
+}
+.register-left-container form {
+    margin-top: 12px;
+}
+
+.register-right-container {
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px,
+        rgba(0, 0, 0, 0.3) 0px 7px 13px -3px,
+        rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+    height: 80vh;
+    width: 42vw;
+    overflow: hidden;
+}
+.box{
+    height: 5vh;
+    width: 25vw;
+    border-radius: 7px;
+    display: flex;
+    text-align: center;
+}
+.form-area{
+padding: 12px;
+padding-left: 122px;
+}
+.form-area input{
+    border: none;
+}
+.form-area button{
+    height: 5vh;
+    width: 12vw;
+    border-radius: 5px;
+    background-color: blue;
+    border: none;
+    margin-left: 75px;
+    cursor: pointer;
+}
+.form-area button:hover{
+    background-color: rgb(34, 208, 83);
+}
