@@ -1,50 +1,93 @@
 import "../styles/register.css";
-import Rightimage from "../../images/leftimg.jpg";
 const Register = () => {
     return (
-        <div className="registration-main-container">
-            <div className="register-left-container">
-                <h3
-                    style={{
-                        color: "blue",
-                        textAlign: "center",
-                        marginTop: "22px",
-                        fontWeight: "900",
-                    }}
-                >
-                    Empowering{" "}
-                    <span style={{ color: "red" }}>Nepal's Digital Future</span>{" "}
-                </h3>
-                <form action="#" method="post">
-                    <div className="form-area">
-                        <label htmlFor="fname">Full Name</label>
-                        <input type="text" className="box" />
+        <div class="container">
+            <div class="title">Registration</div>
+            <div class="content">
+                <form action="#">
+                    <div class="user-details">
+                        <div class="input-box">
+                            <span class="details">Full Name</span>
+                            <input
+                                type="text"
+                                placeholder="Enter your name"
+                                required
+                            />
+                        </div>
+                        <div class="input-box">
+                            <span class="details">Citizenship Number</span>
+                            <input
+                                type="text"
+                                placeholder="Enter your citizenship number"
+                                required
+                            />
+                        </div>
+                        <div class="input-box">
+                            <span class="details">Email</span>
+                            <input
+                                type="text"
+                                placeholder="Enter your email"
+                                required
+                            />
+                        </div>
+                        <div class="input-box">
+                            <span class="details">Phone Number</span>
+                            <input
+                                type="text"
+                                placeholder="Enter your number"
+                                required
+                            />
+                        </div>
+                        <div class="input-box">
+                            <span class="details">Password</span>
+                            <input
+                                type="text"
+                                placeholder="Enter your password"
+                                required
+                            />
+                        </div>
+                        <div class="input-box">
+                            <span class="details">Confirm Password</span>
+                            <input
+                                type="text"
+                                placeholder="Confirm your password"
+                                required
+                            />
+                        </div>
+                        <div class="input-box">
+                            <span class="details">Profile</span>
+                            <input
+                                type="file"
+                            />
+                        </div>
                     </div>
-                    <div className="form-area">
-                        <label htmlFor="email">Email</label>
-                        <input type="email" className="box" />
+                    <div class="gender-details">
+                        <input type="radio" name="gender" id="dot-1" />
+                        <input type="radio" name="gender" id="dot-2" />
+                        <input type="radio" name="gender" id="dot-3" />
+                        <span class="gender-title">Gender</span>
+                        <div class="category">
+                            <label for="dot-1">
+                                <span class="dot one"></span>
+                                <span class="gender">Male</span>
+                            </label>
+                            <label for="dot-2">
+                                <span class="dot two"></span>
+                                <span class="gender">Female</span>
+                            </label>
+                            <label for="dot-3">
+                                <span class="dot three"></span>
+                                <span class="gender">Prefer not to say</span>
+                            </label>
+                        </div>
                     </div>
-                    <div className="form-area">
-                        <label htmlFor="phone">Phone</label>
-                        <input type="tel" className="box" />
-                    </div>
-                    <div className="form-area">
-                        <label htmlFor="password">Password</label>
-                        <input type="password" className="box" />
-                    </div>
-                    <div className="form-area">
-                        <label htmlFor="cpassword"> Confirm Password</label>
-                        <input type="password" className="box" />
-                    </div>
-                    <div className="form-area">
-                        <button>Submit</button>
+                    <div class="button">
+                        <input type="submit" value="Register" />
                     </div>
                 </form>
-            </div>
-            <div className="register-right-container">
-                <img src={Rightimage} alt="image" />
             </div>
         </div>
     );
 };
+
 export default Register;

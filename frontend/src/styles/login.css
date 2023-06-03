@@ -1,24 +1,41 @@
+@import url("https://fonts.cdnfonts.com/css/gugi");
+.global-font {
+    font-family: "Gugi", sans-serif;
+}
 .login-maincontainer {
     height: 90vh;
     display: flex;
     justify-content: center;
-    padding: 42px;
+    padding: 6px;
 }
 .login-leftcontainer {
     width: 37vw;
-    height: 80vh;
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
-        rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
-        rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+    height: 70vh;
 }
-.login-left-image {
-    height: 350px;
-    margin-top: 45px;
-    margin-left: 45px;
+.login-leftcontainer h2,
+h3 {
+    text-align: center;
+    color: green;
+    margin: 2px;
+    font-size: 1.5rem;
+}
+.login-leftcontainer h3 {
+    margin-top: 62px;
+}
+.login-leftcontainer img {
+    height: 210px;
+    width: 18vw;
+    margin-left: 120px;
+}
+.form-field img {
+    height: 99px;
+    margin-top: -160px;
+    margin-left: 10px;
 }
 .login-rightcontainer {
-    width: 45vw;
-    height: 80vh;
+    width: 35vw;
+    height: 70vh;
+    border-radius: 30px;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
         rgba(55, 29, 169, 0.3) 0px 30px 60px -30px,
         rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
@@ -49,4 +66,49 @@
 }
 form {
     margin-top: 100px;
+}
+
+/* Guest layout  css */
+.container-upper-design {
+    height: 20vh;
+    width: 100vw;
+    background-color: white;
+    display: flex;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+        rgba(55, 29, 169, 0.3) 0px 30px 60px -30px,
+        rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+}
+.container-upper-design h5 {
+    margin-top: 22px;
+    font-weight: 900;
+    color: red;
+    margin-left: -12px;
+}
+.container-buttom-design {
+    height: 18vh;
+    width: 100vw;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+        rgba(55, 29, 169, 0.3) 0px 30px 60px -30px,
+        rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+    margin-top: -110px;
+}
+.container-buttom-design p {
+    text-align: center;
+    padding: 42px;
+    color: blue;
+}
+.container-upper-design img {
+    height: 100px;
+    width: 120px;
+    margin: 12px 42px;
+}
+.mountain {
+    height: 18vh;
+    width: 33vw;
+    margin-left: 160px;
+    background-image: url(../../images/mountains.png);
+    background-repeat: repeat-x;
+    background-position-y: -120px;
+    background-size: 400px;
+    opacity: 0.8;
 }

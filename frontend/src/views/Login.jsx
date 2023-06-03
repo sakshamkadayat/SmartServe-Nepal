@@ -1,19 +1,29 @@
 import "../styles/Login.css";
 import Goverment from "../../images/goverment_logo.png";
+import namaste from "../../images/namaste.png";
 const Login = () => {
     return (
         <div className="login-maincontainer">
             <div className="login-leftcontainer">
-                <img
-                    src={Goverment}
-                    alt="images"
-                    className="login-left-image"
-                />
+                <h3 className="global-font">
+                    Introducing <br /> New rules and regulations{" "}
+                </h3>
+                <h2 className="global-font"> For a better tomorrow</h2>
+                <img src={namaste} alt="flag" />
+                <h2 className="global-font">
+                    {" "}
+                    Stay informed for a brighter future.
+                </h2>
             </div>
             <div className="login-rightcontainer">
                 <form action="#" method="post">
                     <div className="form-field">
-                        <h3 style={{ color: "blue" }}>
+                        <img
+                            src={Goverment}
+                            alt="images"
+                            className="login-left-image"
+                        />
+                        <h3 style={{ color: "blue" }} className="global-font">
                             GOVERMENT{" "}
                             <span style={{ color: "red" }}>OF NEPAL</span>
                         </h3>
