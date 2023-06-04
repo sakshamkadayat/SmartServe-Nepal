@@ -1,87 +1,129 @@
 import "../styles/register.css";
+import { useRef,useState } from "react";
 const Register = () => {
+    const nameRef = useRef();
+    const citizenshipRef = useRef();
+    const emailRef = useRef();
+    const phoneRef = useRef();
+    const passwordRef = useRef();
+    const confirmPasswordRef = useRef();
+    const addressRef = useRef();
+    const [gender,setGender] = useState("male");
+
+    const onOptionChange = (e) => {
+        setGender(e.target.value);
+    }
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const payLoad  = {
+            name: nameRef.current.value,
+            citizenship_no: citizenshipRef.current.value,
+            email: emailRef.current.value,
+            phone: phoneRef.current.value,
+            password: passwordRef.current.value,
+            password_confirmation: confirmPasswordRef.current.value,
+            gender: gender,
+            address: addressRef.current.value,
+        }
+    }
+
     return (
-        <div class="container">
-            <div class="title">Registration</div>
-            <div class="content">
-                <form action="#">
-                    <div class="user-details">
-                        <div class="input-box">
-                            <span class="details">Full Name</span>
+        <div className="container">
+            <div className="title">Registration</div>
+            <div className="content">
+                <form action="#" onSubmit={handleSubmit}>
+                    <div className="user-details">
+                        <div className="input-box">
+                            <span className="details">Full Name</span>
                             <input
+                                ref={nameRef}
                                 type="text"
-                                placeholder="Enter your name"
+                                placeholder="Enter your full name"
                                 required
                             />
                         </div>
-                        <div class="input-box">
-                            <span class="details">Citizenship Number</span>
+                        <div className="input-box">
+                            <span className="details">Citizenship Number</span>
                             <input
+                                ref={citizenshipRef}
                                 type="text"
                                 placeholder="Enter your citizenship number"
                                 required
                             />
                         </div>
-                        <div class="input-box">
-                            <span class="details">Email</span>
+                        <div className="input-box">
+                            <span className="details">Email</span>
                             <input
+                                ref={emailRef}
                                 type="text"
                                 placeholder="Enter your email"
                                 required
                             />
                         </div>
-                        <div class="input-box">
-                            <span class="details">Phone Number</span>
+                        <div className="input-box">
+                            <span className="details">Phone Number</span>
                             <input
-                                type="text"
-                                placeholder="Enter your number"
+                                ref={phoneRef}
+                                type="number"
+                                maxLength={15}
+                                placeholder="Enter your contact number"
                                 required
                             />
                         </div>
-                        <div class="input-box">
-                            <span class="details">Password</span>
+                        <div className="input-box">
+                            <span className="details">Password</span>
                             <input
-                                type="text"
-                                placeholder="Enter your password"
+                                ref={passwordRef}
+                                type="password"
+                                placeholder="New Password"
                                 required
                             />
                         </div>
-                        <div class="input-box">
-                            <span class="details">Confirm Password</span>
+                        <div className="input-box">
+                            <span className="details">Confirm Password</span>
                             <input
-                                type="text"
+                                ref={confirmPasswordRef}
+                                type="password"
                                 placeholder="Confirm your password"
                                 required
                             />
                         </div>
-                        <div class="input-box">
-                            <span class="details">Profile</span>
-                            <input
-                                type="file"
-                            />
-                        </div>
                     </div>
-                    <div class="gender-details">
-                        <input type="radio" name="gender" id="dot-1" />
-                        <input type="radio" name="gender" id="dot-2" />
-                        <input type="radio" name="gender" id="dot-3" />
-                        <span class="gender-title">Gender</span>
-                        <div class="category">
-                            <label for="dot-1">
-                                <span class="dot one"></span>
-                                <span class="gender">Male</span>
+                    {/* <div className="gender-details">
+                        <span className="gender-title">Gender</span>
+                        <div className="category">
+                            <label htmlFor="dot-1">
+                        <input  type="radio" name="gender" value="male" id="dot-1" checked={gender ==="male"} onChange={ onOptionChange} />
+                                <span className="gender">Male</span>
                             </label>
-                            <label for="dot-2">
-                                <span class="dot two"></span>
-                                <span class="gender">Female</span>
+                            <label htmlFor="dot-2">
+                        <input   type="radio" name="gender" value="female" id="dot-2" checked={ gender==="female"} onChange={ onOptionChange}/>
+                                <span className="dot two"></span>
+                                <span className="gender">Female</span>
                             </label>
-                            <label for="dot-3">
-                                <span class="dot three"></span>
-                                <span class="gender">Prefer not to say</span>
+                            <label htmlFor="dot-3">
+                        <input type="radio" name="gender" value="other" id="dot-3" checked={gender==="other" } onChange={onOptionChange} />
+                                <span className="dot three"></span>
+                                <span className="gender">Other</span>
                             </label>
                         </div>
-                    </div>
-                    <div class="button">
+                    </div> */}
+                      <label htmlFor="dot-1">
+                        <input  type="radio" name="gender" value="male" id="dot-1" checked={gender ==="male"} onChange={ onOptionChange} />
+                                <span className="gender">Male</span>
+                            </label>
+                            <label htmlFor="dot-2">
+                        <input   type="radio" name="gender" value="female" id="dot-2" checked={ gender==="female"} onChange={ onOptionChange}/>
+                                <span className="dot two"></span>
+                                <span className="gender">Female</span>
+                            </label>
+                            <label htmlFor="dot-3">
+                        <input type="radio" name="gender" value="other" id="dot-3" checked={gender==="other" } onChange={onOptionChange} />
+                                <span className="dot three"></span>
+                                <span className="gender">Other</span>
+                            </label>
+                    <div className="button">
                         <input type="submit" value="Register" />
                     </div>
                 </form>

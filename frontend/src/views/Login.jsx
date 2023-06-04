@@ -1,4 +1,5 @@
 import "../styles/Login.css";
+import {Link } from "react-router-dom";
 import Goverment from "../../images/goverment_logo.png";
 import namaste from "../../images/namaste.png";
 const Login = () => {
@@ -41,7 +42,7 @@ const Login = () => {
                     </div>
                     <div className="form-field">
                         <p>
-                            Forgot Password or <a href="#">Register</a>
+                            Forgot Password or <Link to="/guest/register">Register</Link>
                         </p>
                     </div>
                 </form>
