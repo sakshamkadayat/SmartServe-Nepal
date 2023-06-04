@@ -1,6 +1,8 @@
 import "../styles/Login.css";
 import {Link } from "react-router-dom";
 import Goverment from "../../images/goverment_logo.png";
+
+
 import namaste from "../../images/namaste.png";
 const Login = () => {
     return (
@@ -37,12 +39,12 @@ const Login = () => {
                         <label htmlFor="password">Password </label>
                         <input type="text" name="password" id="password" />
                     </div>
-                    <div className="form-field">
+                    <div className="button">
                         <input type="submit" value="Login" />
                     </div>
                     <div className="form-field">
                         <p>
-                            Forgot Password or <Link to="/guest/register">Register</Link>
+                            Not Registered yet ?  <Link to="/guest/register">Register</Link>
                         </p>
                     </div>
                 </form>

@@ -40,7 +40,7 @@ h3 {
         rgba(55, 29, 169, 0.3) 0px 30px 60px -30px,
         rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
 }
-[type="submit"] {
+/* [type="submit"] {
     border: none;
     height: 5vh;
     width: 17vw;
@@ -52,12 +52,11 @@ h3 {
 }
 [type="submit"]:hover {
     background-color: rgb(39, 203, 39);
-}
+} */
 [type="text"] {
     border: none;
     height: 5vh;
     width: 17vw;
-    border-radius: 4px;
     border: 1px solid;
 }
 .form-field {
