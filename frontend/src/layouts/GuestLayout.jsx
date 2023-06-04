@@ -1,7 +1,13 @@
-import { Outlet } from "react-router-dom";
+import { Outlet , Navigate } from "react-router-dom";
+import axiosClient from "../axios-client";
 import "../styles/login.css";
 import logo from "../../images/goverment_logo.png";
+import {useStateContext} from "../context/ContextProvider";
 const GuestLayout = () => {
+  const {token} = useStateContext();
+  if(token){
+    return <Navigate to="/" />
+  }
     return (
         <>
             <div className="container-upper-design">
