@@ -1,6 +1,11 @@
 import "../styles/register.css";
 import { useRef,useState } from "react";
+import {Link} from "react-router-dom"
+import { useStateContext } from "../context/ContextProvider";
+import axiosClient from "../axios-client"
+
 const Register = () => {
+    const {setUser,settingToken} = useStateContext();
     const nameRef = useRef();
     const citizenshipRef = useRef();
     const emailRef = useRef();
@@ -26,6 +31,16 @@ const Register = () => {
             gender: gender,
             address: addressRef.current.value,
         }
+        console.log(payLoad);
+        axiosClient.post('/register',payLoad)
+        .then((response)=>{
+            console.log(response.data);
+            setUser(response.data.user);
+            settingToken(response.data.access_token)
+        })
+        .catch((error)=>{
+            console.log(error);
+        })
     }
 
     return (
@@ -56,8 +71,17 @@ const Register = () => {
                             <span className="details">Email</span>
                             <input
                                 ref={emailRef}
-                                type="text"
+                                type="email"
                                 placeholder="Enter your email"
+                                required
+                            />
+                        </div>
+                        <div className="input-box">
+                            <span className="details">Address</span>
+                            <input
+                                ref={addressRef}
+                                type="text"
+                                placeholder="Enter your address"
                                 required
                             />
                         </div>
@@ -67,6 +91,7 @@ const Register = () => {
                                 ref={phoneRef}
                                 type="number"
                                 maxLength={15}
+                                min={10}
                                 placeholder="Enter your contact number"
                                 required
                             />
@@ -90,39 +115,24 @@ const Register = () => {
                             />
                         </div>
                     </div>
-                    {/* <div className="gender-details">
+                    <div className="gender-details">
                         <span className="gender-title">Gender</span>
                         <div className="category">
-                            <label htmlFor="dot-1">
-                        <input  type="radio" name="gender" value="male" id="dot-1" checked={gender ==="male"} onChange={ onOptionChange} />
+                            <label>
+                        <input  type="radio" name="gender" value="male" checked={gender ==="male"} onChange={ onOptionChange} />
                                 <span className="gender">Male</span>
                             </label>
-                            <label htmlFor="dot-2">
-                        <input   type="radio" name="gender" value="female" id="dot-2" checked={ gender==="female"} onChange={ onOptionChange}/>
-                                <span className="dot two"></span>
+                            <label>
+                        <input   type="radio" name="gender" value="female" checked={ gender==="female"} onChange={ onOptionChange}/>
                                 <span className="gender">Female</span>
                             </label>
-                            <label htmlFor="dot-3">
-                        <input type="radio" name="gender" value="other" id="dot-3" checked={gender==="other" } onChange={onOptionChange} />
-                                <span className="dot three"></span>
+                            <label>
+                        <input type="radio" name="gender" value="other" checked={gender==="other" } onChange={onOptionChange} />
                                 <span className="gender">Other</span>
                             </label>
                         </div>
-                    </div> */}
-                      <label htmlFor="dot-1">
-                        <input  type="radio" name="gender" value="male" id="dot-1" checked={gender ==="male"} onChange={ onOptionChange} />
-                                <span className="gender">Male</span>
-                            </label>
-                            <label htmlFor="dot-2">
-                        <input   type="radio" name="gender" value="female" id="dot-2" checked={ gender==="female"} onChange={ onOptionChange}/>
-                                <span className="dot two"></span>
-                                <span className="gender">Female</span>
-                            </label>
-                            <label htmlFor="dot-3">
-                        <input type="radio" name="gender" value="other" id="dot-3" checked={gender==="other" } onChange={onOptionChange} />
-                                <span className="dot three"></span>
-                                <span className="gender">Other</span>
-                            </label>
+                    </div>
+                      <p>Already Registered ? <Link to="/guest/login">Login Here</Link></p>
                     <div className="button">
                         <input type="submit" value="Register" />
                     </div>
