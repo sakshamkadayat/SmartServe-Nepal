@@ -1,6 +1,6 @@
 const Dashboard = () => {
   return (
-    <div>Dashboard</div>
+    <div>This is admin dashboard</div>
   )
 }
 export default Dashboard

@@ -3,7 +3,7 @@ const Home = () => {
   return (
       <div>
           <h1 style={{ alignItems: "center" }}>
-              This is a User Homepage or Dashboard
+              This is a User Homepage 
           </h1>
       </div>
   );
