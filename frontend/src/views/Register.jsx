@@ -5,7 +5,7 @@ import { useStateContext } from "../context/ContextProvider";
 import axiosClient from "../axios-client"
 
 const Register = () => {
-    const {setUser,settingToken} = useStateContext();
+    const {settingUser,settingToken} = useStateContext();
     const nameRef = useRef();
     const citizenshipRef = useRef();
     const emailRef = useRef();
@@ -31,15 +31,12 @@ const Register = () => {
             gender: gender,
             address: addressRef.current.value,
         }
-        console.log(payLoad);
         axiosClient.post('/register',payLoad)
-        .then((response)=>{
-            console.log(response.data);
-            setUser(response.data.user);
-            settingToken(response.data.access_token)
+        .then(()=>{
+           window.location.href = "/guest/login";
         })
         .catch((error)=>{
-            console.log(error);
+            console.log(error.response.data.errors);
         })
     }
 

@@ -1,35 +1,47 @@
-import { useContext, createContext ,useState } from "react";
+import { useContext, createContext, useState } from "react";
 const stateContext = createContext({
     user: null,
-    setUser: () => {},
-    settingToken: () =>{},
-}
-);
+    token: null,
+    settingToken: () => {},
+    settingUser: () => {},
+});
 
 export const ContextProvider = ({ children }) => {
-    const [user,setUser] = useState({});
-    // const [token,setToken] = useState(sessionStorage.getItem('access_token'));
-    const [token,setToken] = useState(null);
+    const [user, setUser] = useState(JSON.parse(sessionStorage.getItem("user")));
+    const [token, setToken] = useState(sessionStorage.getItem("access_token"));
+    // const [token,setToken] = useState(null);
 
-    const settingToken = (token) =>{
-        if(token){
-            sessionStorage.setItem('access_token');
-            setToken(token);
-        }else{
-            sessionStorage.removeItem('access_token');
+    const settingToken = (token) => {
+        setToken(token);
+        if (token) {
+            sessionStorage.setItem("access_token", token);
+        } else {
+            sessionStorage.removeItem("access_token");
         }
-    }
+    };
+
+    const settingUser = (user) => {
+        setUser(user);
+        if (user) {
+            sessionStorage.setItem("user", JSON.stringify(user));
+        }
+        else {
+            sessionStorage.removeItem("user");
+        } 
+    };
 
     return (
-        <stateContext.Provider value={{
-            user,
-            setUser,
-            token,
-            settingToken,
-        }}>
+        <stateContext.Provider
+            value={{
+                user,
+                settingUser,
+                token,
+                settingToken,
+            }}
+        >
             {children}
         </stateContext.Provider>
-    )
-}
+    );
+};
 
 export const useStateContext = () => useContext(stateContext);

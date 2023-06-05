@@ -20,8 +20,8 @@ class AuthController extends Controller
         $user = User::create($user_data);
         $token = $user->createToken('auth_token')->plainTextToken;
         return response()->json([
-            'access_token'=>$token,
-            'user'=>$user,
+            // 'access_token'=>$token,
+            // 'user'=>$user,
             'message'=>'Registration Successful'
         ]);
     }
@@ -46,7 +46,8 @@ class AuthController extends Controller
 
     //logout
     public function logout(Request $request){
-        $request->user()->currentAccessToken()->delete();
+        $user = $request->user();
+        $user->currentAccessToken()->delete();
         return response()->json([
             'message'=>'Logout Successful'
         ],204);
