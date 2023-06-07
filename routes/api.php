@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use App\Http\Controllers\Api\AuthController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\PollController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,3 +39,6 @@ Route::post("/register",[AuthController::class,'register']);
 Route::post("/login",[AuthController::class,'login']);
 // Route::post("/forget-password",[AuthController::class,'forgetPassword']);
 // Route::post("/reset-password",[AuthController::class,'resetPassword']);
+
+// api resource contoller for poll feature
+Route::apiResource('polls',PollController::class);
