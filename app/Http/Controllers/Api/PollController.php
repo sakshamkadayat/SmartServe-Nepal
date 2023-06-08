@@ -40,23 +40,15 @@ class PollController extends Controller
                 $poll->save();
             }
         }
-
-        // $userId=Auth::user();
-        // $user_with_votes = User::with('pollsVoted')->find($userId);
-
+    
         //getting all the active polls voted and not voted by the user
-        $user_with_votes = User::with('pollsVoted')->find(5);
-        foreach ($user_with_votes->pollsVoted as $poll) {
-            $votedIds[] = $poll->poll_id;
-        }
-        $user_voted_active_polls = Poll::where('status', 'active')->whereIn('id', $votedIds)->with('pollOptions')->get();
-        $user_not_voted_active_polls = Poll::where('status', 'active')->whereNotIn('id', $votedIds)->with('pollOptions')->get();
+        $returned_poll_and_vote_data = getUserAssociatedActivePolls();
 
         return response()->json([
             'message' => 'Polls fetched successfully',
             'status' => 200,
-            'user_voted' => $user_voted_active_polls,
-            'user_not_voted' => $user_not_voted_active_polls,
+            'user_voted' => $returned_poll_and_vote_data['user_voted'],
+            'user_not_voted' => $returned_poll_and_vote_data['user_not_voted'],
         ]);
     }
 
@@ -165,10 +157,15 @@ class PollController extends Controller
 
         $poll = Poll::where('id', $pollId)->where('status', 'active')->with('pollOptions')->first();
 
+        //getting all the active polls voted and not voted by the user
+        $returned_poll_and_vote_data = getUserAssociatedActivePolls();
+
         return response()->json([
             'message' => 'Vote submitted successfully',
             'status' => 200,
-            'data' => $poll
+            'data' => $poll,
+            'user_voted' => $returned_poll_and_vote_data['user_voted'],
+            'user_not_voted' => $returned_poll_and_vote_data['user_not_voted'],
         ]);
     }
 
