@@ -25,13 +25,17 @@ Route::middleware('auth:sanctum')->group(function(){
         ]);
     });
 
+    //for voting
+    // Route::post('polls/vote', [PollController::class, 'vote']);
+    //Route::get('/polls/{id}',[PollController::class,'show']);
+    //Route::get('/polls',[PollController::class,'index']); 
+
+
 });
 // Route::middleware(['admin','auth:sanctum'])->group(function(){
-//     Route::get("/users",[AuthController::class,'users']);
-//     Route::delete("/user/{id}",[AuthController::class,'deleteUser']);
-//     Route::put("/user/{id}",[AuthController::class,'updateUser']);
-//     Route::get("/user/{id}",[AuthController::class,'getUser']);
-//     Route::post("/user",[AuthController::class,'createUser']);
+//Route::delete('/polls/{id}',[PollController::class,'destroy']);
+//Route::post('/polls',[PollController::class,'store']);
+//Route::get('/all_polls',[PollController::class, 'fetchAllPolls']);
 // });
 
 
@@ -40,5 +44,11 @@ Route::post("/login",[AuthController::class,'login']);
 // Route::post("/forget-password",[AuthController::class,'forgetPassword']);
 // Route::post("/reset-password",[AuthController::class,'resetPassword']);
 
-// api resource contoller for poll feature
-Route::apiResource('polls',PollController::class);
+
+//temporary route for testing
+Route::post('polls/vote',[PollController::class,'vote']); //vote
+Route::get('/polls',[PollController::class,'index']);    //show all polls
+Route::post('/polls',[PollController::class,'store']);  //create poll
+Route::get('/polls/{id}',[PollController::class,'show']); //show poll individual
+Route::delete('/polls/{id}',[PollController::class,'destroy']); //delete poll
+Route::get('/all_polls',[PollController::class, 'fetchAllPolls']); //get all polls

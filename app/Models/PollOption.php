@@ -17,7 +17,15 @@ class PollOption extends Model
         'votes_count',
     ];
 
+    //relationship with poll
     public function poll(){
         return $this->belongsTo(Poll::class);
     }
+
+    //relationship with poll vote (i.e each option can have many voters)
+
+    public function pollVotes(){
+        return $this->hasMany(PollVote::class,'poll_option_id');
+    }
+
 }

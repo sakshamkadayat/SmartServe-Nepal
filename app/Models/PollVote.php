@@ -15,6 +15,15 @@ class PollVote extends Model
         'poll_id',
         'poll_option_id',
         'user_id',
-        'status',
     ];
+
+    //relationship with pollOption
+    public function pollOption(){
+        return $this->belongsTo(PollOption::class);
+    }
+
+    //relationship with user
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
 }

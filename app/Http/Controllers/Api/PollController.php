@@ -7,6 +7,10 @@ use App\Http\Requests\Poll\PollRequest;
 use App\Models\Poll;
 use App\Models\PollOption;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Models\User;
+use Illuminate\Support\Facades\DB;
+use App\Models\PollVote;
 
 class PollController extends Controller
 {
@@ -17,32 +21,42 @@ class PollController extends Controller
      */
     public function index()
     {
-         $polls = Poll::where('status','active')->with('pollOptions')->get();
-         if($polls->isEmpty()){
-            return response()->json([
-                'message'=>'No polls available currently',
-                'status'=>404
-            ]);
-         }
 
-         $active_polls = [];
-         $current_time = strtotime(date('Y-m-d H:i:s'));
-         foreach($polls as $poll){
+        //getting all the active polls and checking if they are still active or not and updating the status
+        $polls = Poll::where('status', 'active')->with('pollOptions')->get();
+        if ($polls->isEmpty()) {
+            return response()->json([
+                'message' => 'No polls available currently',
+                'status' => 404
+            ]);
+        }
+
+        
+        $current_time = strtotime(date('Y-m-d H:i:s'));
+        foreach ($polls as $poll) {
             $end_time = strtotime($poll->end_date);
-            if($end_time > $current_time){
-                $active_polls[] = $poll;
-            }else{
+            if ($end_time < $current_time) {
                 $poll->status = 'off';
                 $poll->save();
             }
-         }
+        }
 
-        // dd($polls, $active_polls);
+        // $userId=Auth::user();
+        // $user_with_votes = User::with('pollsVoted')->find($userId);
+
+        //getting all the active polls voted and not voted by the user
+        $user_with_votes = User::with('pollsVoted')->find(5);
+        foreach ($user_with_votes->pollsVoted as $poll) {
+            $votedIds[] = $poll->poll_id;
+        }
+        $user_voted_active_polls = Poll::where('status', 'active')->whereIn('id', $votedIds)->with('pollOptions')->get();
+        $user_not_voted_active_polls = Poll::where('status', 'active')->whereNotIn('id', $votedIds)->with('pollOptions')->get();
 
         return response()->json([
-            'message'=>'Polls fetched successfully',
-            'status'=>200,
-            'data'=>$active_polls
+            'message' => 'Polls fetched successfully',
+            'status' => 200,
+            'user_voted' => $user_voted_active_polls,
+            'user_not_voted' => $user_not_voted_active_polls,
         ]);
     }
 
@@ -69,15 +83,15 @@ class PollController extends Controller
         foreach ($poll_options as $option) {
             $poll->pollOptions()->create([
                 'option' => $option['option'],
-                // 'votes_count'=>$option->votes_count,
             ]);
         }
 
+        $created_poll = Poll::where('id', $poll->id)->with('pollOptions')->first();
+
         return response()->json([
             'message' => 'Poll created successfully',
-            'data' => $poll,
+            'data' => $created_poll,
             'status' => 201,
-            'poll_option' => $poll_options
         ], 201);
     }
 
@@ -89,17 +103,17 @@ class PollController extends Controller
      */
     public function show($id)
     {
-        $poll = Poll::where('id',$id)->where('status','active')->with('pollOptions')->first();
-        if(!$poll){
+        $poll = Poll::where('id', $id)->where('status', 'active')->with('pollOptions')->first();
+        if (!$poll) {
             return response()->json([
-                'message'=>'Poll not found',
-                'status'=>404
+                'message' => 'Poll not found',
+                'status' => 404
             ]);
-        }else{
+        } else {
             return response()->json([
-                'message'=>'Poll fetched successfully',
-                'status'=>200,
-                'data'=>$poll
+                'message' => 'Poll fetched successfully',
+                'status' => 200,
+                'data' => $poll
             ]);
         }
     }
@@ -111,9 +125,51 @@ class PollController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function vote(Request $request)
     {
-        //
+        $request->validate([
+            'poll_id' => 'required|integer',
+            'poll_option_id' => 'required|integer',
+        ]);
+        // $userId = Auth::user()->id; 
+        $userId = 5;
+        $pollId = $request->input('poll_id');
+        $pollOptionId = $request->input('poll_option_id');
+        // Check if the user has already voted for this poll
+        $existingVote = PollVote::where('user_id', $userId)
+            ->where('poll_id', $pollId)
+            ->first();
+        if ($existingVote) {
+            $poll = Poll::where('id', $pollId)->where('status', 'active')->with('pollOptions')->first();
+            return response()->json([
+                'message' => 'You have already voted for this poll',
+                'status' => 400,
+                'data' => $poll
+            ]);
+        }
+
+        // Create a new poll vote
+        $vote = new PollVote();
+        $vote->user_id = $userId;
+        $vote->poll_id = $pollId;
+        $vote->poll_option_id = $pollOptionId;
+        $vote->save();
+
+        // Update the vote count for the poll option in a transaction (to handle concurrency)
+        DB::transaction(function () use ($pollId, $pollOptionId) {
+            // Update the vote count for the poll option
+            PollOption::where('id', $pollOptionId)
+                ->where('poll_id', $pollId)
+                ->update(['votes_count' => DB::raw('votes_count + 1')]);
+        });
+
+        $poll = Poll::where('id', $pollId)->where('status', 'active')->with('pollOptions')->first();
+
+        return response()->json([
+            'message' => 'Vote submitted successfully',
+            'status' => 200,
+            'data' => $poll
+        ]);
     }
 
     /**
@@ -124,6 +180,33 @@ class PollController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Poll::where('id', $id)->delete();
+        return response()->json([
+            'message' => 'Poll deleted successfully',
+            'status' => 200
+        ]);
+    }
+
+
+    /**
+     * fetch all the polls for the admin
+     *
+     * 
+     * @return \Illuminate\Http\Response
+     */
+    public function fetchAllPolls()
+    {
+        $polls = Poll::with('pollOptions')->get();
+        if(!$polls){
+            return response()->json([
+                'message' => 'Polls not found',
+                'status' => 404
+            ]);
+        }
+        return response()->json([
+            'message' => 'Polls fetched successfully',
+            'status' => 200,
+            'data' => $polls
+        ]);
     }
 }
