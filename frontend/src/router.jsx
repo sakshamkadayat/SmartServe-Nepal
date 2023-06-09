@@ -7,6 +7,9 @@ import Register from './views/Register';
 import AdminLayout from './layouts/AdminLayout';
 import Dashboard from './views/admin/Dashboard';
 import Page404 from './views/Page404';
+import Surveys from './views/admin/Surveys';
+import Polls from './views/admin/Polls';
+import PolicyFeedback from './views/admin/PolicyFeedback';
 
 const router = createBrowserRouter([
     {
@@ -49,6 +52,18 @@ const router = createBrowserRouter([
             {
                 path : 'dashboard',
                 element : <Dashboard />
+            },
+            {
+                path : 'surveys',
+                element : <Surveys />
+            },
+            {
+                path : 'polls',
+                element : <Polls />
+            },
+            {
+                path : 'policy_feedbacks',
+                element : <PolicyFeedback />
             }
         ]
     },
