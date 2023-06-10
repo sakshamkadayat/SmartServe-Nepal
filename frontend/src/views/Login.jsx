@@ -29,7 +29,7 @@ const Login = () => {
     return (
         <div className="login-maincontainer">
             <div className="login-leftcontainer">
-                <h3 className="global-font">WELCOME BACK !</h3>
+                <h3>WELCOME BACK !</h3>
                 <form action="#" onSubmit={handleSubmit} method="post">
                     <div className="form-field">
                         <input
@@ -51,7 +51,7 @@ const Login = () => {
                         />
                     </div>
                     <div className="form-field">
-                        <a href="#" className="forgot global-font">
+                        <a href="#" className="forgot_password">
                             Forgot password ?
                         </a>
                     </div>
@@ -59,9 +59,9 @@ const Login = () => {
                         <input type="submit" value="Login" className="btn" />
                     </div>
                     <div className="form-field">
-                        <p className="global-font">
+                        <p >
                             Don't have an account ?{" "}
-                            <Link to="/guest/register" style={{color:'red'}} className="global-font">Signup</Link>
+                            <Link to="/guest/register">Signup</Link>
                         </p>
                     </div>
                 </form>

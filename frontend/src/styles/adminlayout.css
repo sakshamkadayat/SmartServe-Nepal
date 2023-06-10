@@ -4,9 +4,9 @@
 
 .sidebar {
   width: 200px;
-  background-color: #000000;
-  padding: 20px;
-  color: #fff;
+  box-shadow: 0px 10px 15px -3px rgba(0,0,0,0.1);
+  padding: 15px;
+  color: black;
   position: fixed;
   left:0;
   top:0;
@@ -17,37 +17,36 @@
   margin-top: 0;
   margin-bottom: 20px;
   font-size: 18px;
-  color:#fff;
+  color:black;
 }
 
-
-
-.sidebar li a {
-  margin-bottom: 20px;
-font-size: 14px;
-}
-.slidebar li:last-child {
-  margin-bottom: 0;
-}
 .sidebar li a svg{
   margin-right: 10px;
+  margin-left: 10px;
 }
-
-.sidebar li a {
+.sidebar li a svg path{
+  fill: black;
+}
+.sidebar li a{
   margin-left: 3px;
-  /* color: #fff; */
-  text-decoration: none;
+  color: black;
+  border-radius: 7px;
+  padding: 10px 5px;
+  margin-bottom: 10px;
   display: flex;
   align-items: center;
   font-size: 14px;
   transition: all 0.3s ease;
   
 }
+.slidebar li:last-child {
+  margin-bottom: 0;
+}
 .admin_handle button{
   margin-left: 10px;
    background:transparent; 
     border: none;
-    color: #fff;
+    color: rgb(118, 228, 98);
   padding: 10px 20px;
   border-radius: px;
   cursor: pointer;
@@ -57,11 +56,12 @@ font-size: 14px;
 
 .sidebar li a:hover,
 .admin_handle button:hover {
-  color :red;
+  color :rgb(118, 228, 98);
+  background-color: rgba(67, 235, 95, 0.1); 
   transform: scale(1.1);
 }
 
-.content {
+.dashboard_content {
   margin-left:200px;
   background-color: #fff;
 }
@@ -73,12 +73,13 @@ font-size: 14px;
   margin: 70px 20px 20px 20px;
   padding: 20px;
   min-height: 60vh;
-  background-color: #e0dbdb;
+ box-shadow: 0px 0px 15px -3px rgba(0,0,0,0.1);
   border-radius: 3px;
 }
 
 .navbar {
-  background-color: #3d3b3b;
+   box-shadow: 0px 10px 15px -3px rgba(0,0,0,0.1);
+  background-color: #ffffff;
   padding: 10px 20px;
   position: fixed;
   width: 87%;
@@ -103,7 +104,7 @@ font-size: 14px;
 
 .navbar .profile span {
   font-weight: bold;
-  color: #fff;
+  color: #000;
   font-size: 14px;
 }
 
@@ -113,6 +114,7 @@ font-size: 14px;
   gap: 10px;
 }
 
-  .active_navlink {
-    color: red;
+.active_navlink {
+    color: rgb(118, 228, 98)!important;
+     background-color: rgba(67, 235, 95, 0.1);
   }

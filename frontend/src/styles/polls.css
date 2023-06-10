@@ -1,0 +1,96 @@
+.polls_main_container{
+     padding: 5px;
+}
+.polls_main_container  h2{
+    text-align: center;
+    margin: 20px 0px;
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: #71db5b;
+   background-color: rgba(67, 235, 95, 0.1);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.create_new_poll_btn{
+    margin: 20px 0px;
+    padding: 10px 20px;
+    background-color: #71db5b;
+    color: white;
+    border-radius: 5px;
+    border: none;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+.create_new_poll_btn:hover{
+    background-color: #2bc60c;
+    transform: scale(1.1);
+}
+.poll_form_container{
+    margin: 10px 0px;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.2);
+}
+
+.poll_form_container > form > div{
+    margin: 10px 0px;
+}
+
+.poll_form_container > form > div > input{
+    width: 70%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #71db5b;
+    outline: none;
+}
+.poll_form_container > form > div > input:focus{
+    border: 1px solid #f3e955;
+}
+
+.remove_option_btn{
+    margin-left: 10px;
+    padding: 10px;
+    background-color: #fdf7f7;
+    border-radius: 5px;
+    color:red;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+.add_more_option_btn{
+    margin-right: 10px;
+    padding: 15px;
+    background-color: #fdf7f7;
+    border-radius: 5px;
+    color:rgb(166, 0, 255);
+    border: none;
+    outline: none;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+.poll_submit_btn{
+    /* margin: 20px 0px; */
+    padding: 10px 20px;
+    background-color: #8070e8;
+    color: white;
+    border-radius: 5px;
+    border: none;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+.add_more_option_btn:hover,
+.remove_option_btn:hover,
+.poll_submit_btn:hover{
+    transform: scale(1.1);
+}
+
+.all_poll_container{
+    margin: 30px 0px;
+}

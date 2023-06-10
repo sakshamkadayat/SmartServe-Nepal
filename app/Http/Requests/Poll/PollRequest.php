@@ -27,8 +27,8 @@ class PollRequest extends FormRequest
             'question'=>'required|string',
             'description'=>'required|string',
             'end_date'=> 'required|date|date_format:Y-m-d H:i:s|after:tomorrow',  //allow only future dates
-            'pollData'=>'required|array|min:2',
-            'pollData.*.option'=>'required|string',
+            'poll_options'=>'required|array|min:2',
+            'poll_options.*.option'=>'required|string',
         ];
     }
 }

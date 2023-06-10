@@ -1,0 +1,19 @@
+.pre-loader-for-all{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  padding: 50px;
+  min-height: 70vh;
+  
+
+}
+.pre-loader-for-all p{
+ text-transform: capitalize;
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin-top: 3rem;
+    color: rgb(60, 211, 34);
+}
