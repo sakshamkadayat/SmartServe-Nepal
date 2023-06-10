@@ -2,7 +2,6 @@ import { Outlet ,NavLink} from "react-router-dom";
 import { useStateContext } from "../context/ContextProvider";
 import adminProfileIamge from "../assets/admin_profile.png";
 import { Navigate } from "react-router-dom";
-import { useEffect } from "react";
 import axiosClient from "../axios-client";
 import "../styles/adminlayout.css"
 import {
@@ -11,6 +10,8 @@ import {
     FaUserCog,
     FaSignOutAlt,
 } from "react-icons/fa";
+import {FcSurvey} from "react-icons/fc";
+import {VscFeedback} from "react-icons/vsc";
 
 
 const AdminLayout = () => {
@@ -30,31 +31,31 @@ const AdminLayout = () => {
        });
    };
    const sideBarLinks = [
-    {
-        id: 1,
-        name: "Dashboard",
-        icon: <FaTachometerAlt />,
-        link: "/admin/dashboard",
-    },
-    {
-        id: 2,
-        name:'Surveys',
-        icon:<FaChartBar />,
-        link:'/admin/surveys'
-    },
-    {
-        id: 3,
-        name:'Polls',
-        icon:<FaChartBar />,
-        link:'/admin/polls'
-    },
-    {
-        id: 4,
-        name:'Policy Feedbacks',
-        icon:<FaChartBar />,
-        link:'/admin/policy_feedbacks'
-    }
-   ]
+       {
+           id: 1,
+           name: "Dashboard",
+           icon: <FaTachometerAlt />,
+           link: "/admin/dashboard",
+       },
+       {
+           id: 2,
+           name: "Surveys",
+           icon: <FcSurvey />,
+           link: "/admin/surveys",
+       },
+       {
+           id: 3,
+           name: "Polls",
+           icon: <FaChartBar />,
+           link: "/admin/polls",
+       },
+       {
+           id: 4,
+           name: "Policy Feedbacks",
+           icon: <VscFeedback />,
+           link: "/admin/policy_feedbacks",
+       },
+   ];
 
 
     return (
@@ -67,6 +68,7 @@ const AdminLayout = () => {
                             return (
                                 <li key={element.id}>
                                     <NavLink 
+                                    // key={element.id}
                                     to={element.link}
                                       className={({ isActive }) =>(
                                             isActive ? "active_navlink" : ""
@@ -80,7 +82,7 @@ const AdminLayout = () => {
                         })}
                     </ul>
                 </div>
-                <div className="content">
+                <div className="dashboard_content">
                     <div className="navbar">
                         <div className="profile">
                             <img

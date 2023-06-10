@@ -65,7 +65,7 @@ class PollController extends Controller
         $poll_question = $validated_data['question'];
         $poll_description = $validated_data['description'];
         $poll_end_date = $validated_data['end_date'];
-        $poll_options = $validated_data['pollData'];
+        $poll_options = $validated_data['poll_options'];
         $poll  = Poll::create([
             'question' => $poll_question,
             'description' => $poll_description,
@@ -175,9 +175,16 @@ class PollController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Poll $poll)
     {
-        Poll::where('id', $id)->delete();
+        //delete only poll whoose status is off
+        if($poll->status == 'active'){
+            return response()->json([
+                'message' => 'Poll cannot be deleted',
+                'status' => 400
+            ]);
+        }
+        $poll->delete();
         return response()->json([
             'message' => 'Poll deleted successfully',
             'status' => 200
@@ -193,7 +200,7 @@ class PollController extends Controller
      */
     public function fetchAllPolls()
     {
-        $polls = Poll::with('pollOptions')->get();
+        $polls = Poll::with('pollOptions')->latest()->get();
         if(!$polls){
             return response()->json([
                 'message' => 'Polls not found',
