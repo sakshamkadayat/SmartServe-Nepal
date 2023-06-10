@@ -2,112 +2,116 @@
 .global-font {
     font-family: "Gugi", sans-serif;
 }
-.login-maincontainer {
-    height: 90vh;
-    display: flex;
-    justify-content: center;
-    padding: 6px;
+body {
+    /* background: linear-gradient(
+        180deg,
+        #0b3ef4 0%,
+        #0b3ef4 55.44%,
+        rgba(11, 62, 244, 0.523956) 47.88%,
+        rgba(11, 62, 244, 0.35) 100%
+    ); */
+    background-color:#1B5692;
+    
 }
+/* from main container card */
+.form-maincontainer {
+    background-color: #fefefe;
+    height: 92vh;
+    width: 85vw;
+    border-radius: 15px;
+    margin-left: 90px;
+    margin-top: 30px;
+    background-image: url(../../src/images/wholeblob-01.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    background-size: 250vh;
+}
+/* start login from left and right div */
 .login-leftcontainer {
-    width: 37vw;
-    height: 70vh;
-}
-.login-leftcontainer h2,
-h3 {
+    /* border: 1px solid; */
+    height: 59vh;
+    width: 47vw;
     text-align: center;
-    color: green;
-    margin: 2px;
-    font-size: 1.5rem;
-}
-.login-leftcontainer h3 {
-    margin-top: 62px;
-}
-.login-leftcontainer img {
-    height: 210px;
-    width: 18vw;
-    margin-left: 120px;
-}
-.form-field img {
-    height: 99px;
-    margin-top: -160px;
-    margin-left: 10px;
+    padding: 30px;
 }
 .login-rightcontainer {
-    width: 35vw;
-    height: 70vh;
-    border-radius: 30px;
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
-        rgba(55, 29, 169, 0.3) 0px 30px 60px -30px,
-        rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+    /* border: 1px solid; */
+    height: 59vh;
+    width: 40vw;
+    text-align: center;
+    position: relative;
+
 }
-/* [type="submit"] {
+.login-rightcontainer img {
+    height: 25vh;
+    width: 12vw;
+    border-radius: 322px;
+    position: absolute;
+    top: 20px;
+    right:30px;
+}
+.login-rightcontainer .flags{
+    top: 130px;
+    left:180px;
+}
+.login-rightcontainer .vote{
+    top: 20px;
+    left:40px;
+    background-color: #fefefe;
+}
+.login-rightcontainer .poll{
+    height: 20vh;
+    width: 10vw;
+    top: 220px;
+    left:40px;
+    background-color: #fefefe;
+}
+/* end login from left and right div */
+
+/* login left right flex container */
+.container-outlet {
+    display: flex;
+    justify-content: center;
+}
+
+/* header logo */
+.container-upper{
+    display: flex;
+    justify-content: space-between;
+    /* border: 1px solid; */
+}
+.container-upper p{
+    padding: 22px;
+    color: rgb(94, 96, 97);
+}
+.container-upper img {
+    height: 95px;
+    margin: 15px 45px;
+}
+.form-field input{
+    height: 6vh;
+    width: 22vw;
+    margin-top: 15px;
+    border-radius: 4px;
     border: none;
-    height: 5vh;
-    width: 17vw;
-    margin-left: 80px;
-    background-color: rgb(38, 92, 209);
-    border-radius: 7px;
+    background-color: #dbd6d6;
+    padding: 12px;
+    margin-bottom: 12px;
+}
+.form-field .btn{
+    background-color: blue;
     color: white;
     cursor: pointer;
 }
-[type="submit"]:hover {
-    background-color: rgb(39, 203, 39);
-} */
-[type="text"] {
-    border: none;
-    height: 5vh;
-    width: 17vw;
-    border: 1px solid;
-}
-.form-field {
-    padding: 12px;
-    text-align: center;
-}
-form {
-    margin-top: 100px;
+.form-field .btn:hover{
+    background-color: rgb(23, 156, 13);
 }
 
-/* Guest layout  css */
-.container-upper-design {
-    height: 20vh;
-    width: 100vw;
-    background-color: white;
-    display: flex;
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
-        rgba(55, 29, 169, 0.3) 0px 30px 60px -30px,
-        rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
-}
-.container-upper-design h5 {
-    margin-top: 22px;
-    font-weight: 900;
+.form-field .forgot{
     color: red;
-    margin-left: -12px;
+    margin-left: 150px;
 }
-.container-buttom-design {
-    height: 18vh;
-    width: 100vw;
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
-        rgba(55, 29, 169, 0.3) 0px 30px 60px -30px,
-        rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
-    margin-top: -110px;
-}
-.container-buttom-design p {
-    text-align: center;
-    padding: 42px;
-    color: blue;
-}
-.container-upper-design img {
-    height: 100px;
-    width: 120px;
-    margin: 12px 42px;
-}
-.mountain {
-    height: 18vh;
-    width: 33vw;
-    margin-left: 160px;
-    background-image: url(../../images/mountains.png);
-    background-repeat: repeat-x;
-    background-position-y: -120px;
-    background-size: 400px;
-    opacity: 0.8;
+.form-field p{
+    margin-top: 45px;
 }
