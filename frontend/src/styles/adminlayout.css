@@ -57,7 +57,7 @@
 .sidebar li a:hover,
 .admin_handle button:hover {
   color :rgb(118, 228, 98);
-  background-color: rgba(67, 235, 95, 0.1); 
+  background-color: rgba(67, 235, 95, 0.2); 
   transform: scale(1.1);
 }
 
@@ -84,7 +84,7 @@
   position: fixed;
   width: 87%;
   top:0;
-
+  z-index: 5;
    display: flex; 
   justify-content: space-between;
   align-items: center; 

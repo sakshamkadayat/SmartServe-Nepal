@@ -7,7 +7,7 @@
     font-size: 2.5rem;
     font-weight: 600;
     color: #71db5b;
-   background-color: rgba(67, 235, 95, 0.1);
+   background-color: rgba(67, 235, 95, 0.2);
     text-transform: uppercase;
     letter-spacing: 1px;
 }
@@ -93,4 +93,93 @@
 
 .all_poll_container{
     margin: 30px 0px;
+}
+.active_poll_title{
+    max-width: 200px;
+    padding: 5px;
+    border-radius: 10px;
+    background-color: rgba(138, 29, 184, 0.2);
+    text-align: center;
+}
+.active_poll_div,
+.inactive_poll_div{
+    margin: 10px 0px;
+    padding: 30px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.2);
+}
+.active_poll_div{
+    border:1px solid #71db5b;
+}
+.inactive_poll_div{
+    border:1px solid #e74c3c;
+    position: relative;
+    z-index: 1;
+}
+.inactive_poll_delete_btn{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 10px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+.inactive_poll_delete_btn svg{
+    color: red;
+    background: transparent;
+}
+.inactive_poll_delete_btn:hover{
+    transform: scale(1.1);
+}
+
+
+.poll_option_container{
+    margin: 10px 0px;
+    padding: 10px;
+    border-radius: 5px;
+}
+.active_poll_total_votes{
+    margin: 10px 0px;
+    width: 200px;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: rgba(29, 184, 60, 0.2);
+    text-align: center;
+}
+.poll_option_container{
+    margin: 10px 0px;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.2);
+}
+.progress-bar {
+  width: 100%;
+  height: 10px;
+  background-color: rgba(191, 62, 220, 0.2);
+  border-radius: 5px;
+}
+
+.progress {
+  height: 100%;
+  background-color: #62e02d; /* Change color to suit your preference */
+  border-radius: 5px;
+}
+.poll_data_details{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+.poll_data_details > p{
+    font-size: 0.8rem;
+    color:grey;
+}
+.expired_poll_title{
+    max-width: 200px;
+    padding: 5px;
+    border-radius: 10px;
+    background-color: rgb(231, 53, 50);
+    text-align: center;
 }
