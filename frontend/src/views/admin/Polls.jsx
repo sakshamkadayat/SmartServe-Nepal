@@ -120,6 +120,19 @@ const Polls = () => {
         }));
     };
 
+    const handleDeletePoll = async (pollId) => {
+        try {
+            const response = await axiosClient.delete(`/polls/${pollId}`);
+            console.log(response.data.message);
+            setSubmitCount(submitCount + 1);
+        } catch (error) {
+            console.log(error.response.data.message);
+        }
+    };
+
+    const activePolls = allPolls.filter((poll) => poll.status === "active");
+    const expiredPolls = allPolls.filter((poll) => poll.status === "off");
+
     return (
         <div className="polls_main_container">
             <h2>Create and Manage Polls</h2>
@@ -190,7 +203,8 @@ const Polls = () => {
                                     placeholder="Enter the poll option"
                                 />
                                 {formData.poll_options.length > 2 && (
-                                    <button className="remove_option_btn"
+                                    <button
+                                        className="remove_option_btn"
                                         onClick={(e) => {
                                             handleRemoveOption(
                                                 e,
@@ -198,13 +212,16 @@ const Polls = () => {
                                             );
                                         }}
                                     >
-                                      <FaRegTrashAlt />
+                                        <FaRegTrashAlt />
                                     </button>
                                 )}
                             </div>
                         ))}
 
-                        <button className="add_more_option_btn" onClick={handleAddOption}>
+                        <button
+                            className="add_more_option_btn"
+                            onClick={handleAddOption}
+                        >
                             Add more option <FaPlus />
                         </button>
 
@@ -219,20 +236,104 @@ const Polls = () => {
                 {loading && <PreLoader text="fetching data from server" />}
                 {!loading && (
                     <>
-                        {allPolls.map((value) => (
+                        <h4 className="active_poll_title">
+                            Active Polls &#128293;
+                        </h4>
+                        {activePolls.map((value) => (
                             <>
-                                <p key={value.id}>
-                                    Question: {value.question} status:{" "}
-                                    {value.status}
-                                </p>
-                                {value.poll_options.map((innerVal) => (
-                                    <>
-                                        <p key={innerVal.id}>
-                                            Option: {innerVal.option}{" "}
-                                            Vote_count: {innerVal.votes_count}{" "}
-                                        </p>
-                                    </>
-                                ))}
+                                <div key={value.id} className="active_poll_div">
+                                    <h4>{value.question}</h4>
+                                    <h5 className="active_poll_total_votes">
+                                        Total votes : {value.totalVotes}
+                                    </h5>
+                                    {value.poll_options.map((innerVal) => (
+                                        <>
+                                            <div
+                                                className="poll_option_container"
+                                                key={innerVal.id}
+                                            >
+                                                {innerVal.option}{" "}
+                                                <div class="progress-bar">
+                                                    <div
+                                                        class="progress"
+                                                        style={{
+                                                            width: `${innerVal.percentage}%`,
+                                                        }}
+                                                    ></div>
+                                                </div>
+                                                <div className="poll_data_details">
+                                                    <p>
+                                                        Vote_count:{" "}
+                                                        {innerVal.votes_count}
+                                                    </p>
+                                                    <p>
+                                                        Percentage:{" "}
+                                                        {innerVal.percentage}%
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </>
+                                    ))}
+                                </div>
+                            </>
+                        ))}
+                    </>
+                )}
+
+                {!loading && (
+                    <>
+                        <h4 className="expired_poll_title">
+                            Expired Polls &#128128;
+                        </h4>
+                        {expiredPolls.map((value) => (
+                            <>
+                                <div
+                                    key={value.id}
+                                    className="inactive_poll_div"
+                                >
+                                    <div className="inactive_poll_delete_btn">
+                                        <button
+                                            className="remove_option_btn"
+                                            onClick={() => {
+                                                handleDeletePoll(value.id);
+                                            }}
+                                        >
+                                            <FaRegTrashAlt />
+                                        </button>
+                                    </div>
+                                    <h4>{value.question}</h4>
+                                    <h5 className="active_poll_total_votes">
+                                        Total votes : {value.totalVotes}
+                                    </h5>
+                                    {value.poll_options.map((innerVal) => (
+                                        <>
+                                            <div
+                                                className="poll_option_container"
+                                                key={innerVal.id}
+                                            >
+                                                {innerVal.option}{" "}
+                                                <div class="progress-bar">
+                                                    <div
+                                                        class="progress"
+                                                        style={{
+                                                            width: `${innerVal.percentage}%`,
+                                                        }}
+                                                    ></div>
+                                                </div>
+                                                <div className="poll_data_details">
+                                                    <p>
+                                                        Vote_count:{" "}
+                                                        {innerVal.votes_count}
+                                                    </p>
+                                                    <p>
+                                                        Percentage:{" "}
+                                                        {innerVal.percentage}%
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </>
+                                    ))}
+                                </div>
                             </>
                         ))}
                     </>

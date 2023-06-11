@@ -207,10 +207,20 @@ class PollController extends Controller
                 'status' => 404
             ]);
         }
+        $polls_with_votes_percentage= $polls->map(function ($poll) {
+            $totalVotes = $poll->pollOptions->sum('votes_count');
+                $pollOptionsWithPercentage = $poll->pollOptions->map(function ($option) use ($totalVotes) {
+                    $option->percentage = ($totalVotes > 0) ? round(($option->votes_count / $totalVotes) * 100, 2) : 0;
+                    return $option;
+                });
+                $poll->poll_options = $pollOptionsWithPercentage;
+                $poll->totalVotes = $totalVotes;
+            return $poll;
+        });
         return response()->json([
             'message' => 'Polls fetched successfully',
             'status' => 200,
-            'data' => $polls
+            'data' => $polls_with_votes_percentage
         ]);
     }
 }

@@ -33,7 +33,7 @@ Route::middleware('auth:sanctum')->group(function(){
 
 });
  Route::middleware(['admin','auth:sanctum'])->group(function(){
-//Route::delete('/polls/{id}',[PollController::class,'destroy']);
+Route::delete('/polls/{poll}',[PollController::class,'destroy']);
 Route::post('/polls',[PollController::class,'store']);
 Route::get('/all_polls',[PollController::class, 'fetchAllPolls']);
  });
@@ -50,5 +50,5 @@ Route::post('polls/vote',[PollController::class,'vote']); //vote
 Route::get('/polls',[PollController::class,'index']);    //show all polls
 // Route::post('/polls',[PollController::class,'store']);  //create poll
 Route::get('/polls/{id}',[PollController::class,'show']); //show poll individual
-Route::delete('/polls/{poll}',[PollController::class,'destroy']); //delete poll
+//Route::delete('/polls/{poll}',[PollController::class,'destroy']); //delete poll
 //Route::get('/all_polls',[PollController::class, 'fetchAllPolls']); //get all polls
