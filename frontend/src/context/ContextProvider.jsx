@@ -1,5 +1,4 @@
 import { useContext, createContext, useState } from "react";
-import { toast } from "react-toastify";
 const stateContext = createContext({
     user: null,
     token: null,
@@ -31,17 +30,9 @@ export const ContextProvider = ({ children }) => {
         } 
     };
 
-    //toast
-     const handleSuccess = (msg) => {
-         // API call is successful
-         toast.success(msg, {
-             position: toast.POSITION.TOP_RIGHT,
-         });
-     };
-     const handleError = (msg) => {
-         // API call resulted in an error
-         toast.error(msg, { position: toast.POSITION.TOP_RIGHT });
-     };
+   
+
+     //for getting user 
 
     return (
         <stateContext.Provider
@@ -50,8 +41,6 @@ export const ContextProvider = ({ children }) => {
                 settingUser,
                 token,
                 settingToken,
-                handleSuccess,
-                handleError,
             }}
         >
             {children}
