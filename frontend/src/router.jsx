@@ -1,15 +1,28 @@
 import { createBrowserRouter, Navigate } from 'react-router-dom';
+
+//layouts
 import DefaultLayout from './layouts/DefaultLayout';
-import Home from './views/Home';
 import GuestLayout from './layouts/GuestLayout';
+import AdminLayout from './layouts/AdminLayout';
+
+//new user 
 import Login from './views/Login';
 import Register from './views/Register';
-import AdminLayout from './layouts/AdminLayout';
+
+//admin components import
 import Dashboard from './views/admin/Dashboard';
-import Page404 from './views/Page404';
 import Surveys from './views/admin/Surveys';
 import Polls from './views/admin/Polls';
 import PolicyFeedback from './views/admin/PolicyFeedback';
+
+//error page
+import Page404 from './views/Page404';
+
+//user components import
+import Home from './views/Home';
+import SurveyUser from './views/ServeyUser';
+import PollsUser from './views/PollsUser';
+import FeedbackUser from './views/FeedbackUser';
 
 const router = createBrowserRouter([
     {
@@ -23,7 +36,20 @@ const router = createBrowserRouter([
             {
                 path : '/home',
                 element : <Navigate to="/" />
+            },
+            {
+                path : '/survey',
+                element : <SurveyUser />
+            },
+            {
+                path:'/polls',
+                element:<PollsUser/>
+            },
+            {
+                path:'/feedbacks',
+                element: <FeedbackUser/>
             }
+
 
         ]
     },

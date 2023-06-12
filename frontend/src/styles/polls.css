@@ -32,6 +32,7 @@
     margin: 10px 0px;
     padding: 20px;
     border-radius: 5px;
+    transition: all 0.3s ease-in-out;
     box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.2);
 }
 
@@ -182,4 +183,15 @@
     border-radius: 10px;
     background-color: rgb(231, 53, 50);
     text-align: center;
+}
+.no_polls{
+    margin: 10px 0px;
+    padding: 30px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.2);
+}
+
+.poll_descriptions{
+    display: flex;
+    justify-content: space-between;
 }

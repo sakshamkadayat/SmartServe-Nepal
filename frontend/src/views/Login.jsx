@@ -25,7 +25,7 @@ const Login = () => {
                 console.log(error);
             });
     };
-
+    
     return (
         <div className="login-maincontainer">
             <div className="login-leftcontainer">
@@ -70,3 +70,4 @@ const Login = () => {
     );
 };
 export default Login;
+

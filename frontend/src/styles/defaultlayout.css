@@ -1,8 +1,8 @@
-.dashboard {
+.user_dashboard {
   height: 100vh;
 }
 
-.sidebar {
+.user_sidebar {
   width: 200px;
   box-shadow: 0px 10px 15px -3px rgba(0,0,0,0.1);
   padding: 15px;
@@ -13,21 +13,21 @@
   height: 100vh;
 }
 
-.sidebar h3 {
+.user_sidebar h3 {
   margin-top: 0;
   margin-bottom: 20px;
   font-size: 18px;
   color:black;
 }
 
-.sidebar li a svg{
+.user_sidebar li a svg{
   margin-right: 10px;
   margin-left: 10px;
 }
-.sidebar li a svg path{
+.user_sidebar li a svg path{
   fill: black;
 }
-.sidebar li a{
+.user_sidebar li a{
   margin-left: 3px;
   color: black;
   border-radius: 7px;
@@ -39,10 +39,10 @@
   transition: all 0.3s ease;
   
 }
-.slidebar li:last-child {
+.user_slidebar li:last-child {
   margin-bottom: 0;
 }
-.admin_handle button{
+.user_handle button{
   margin-left: 10px;
    background:transparent; 
     border: none;
@@ -54,19 +54,19 @@
   transition: all 0.3s ease;
 }
 
-.sidebar li a:hover,
-.admin_handle button:hover {
+.user_sidebar li a:hover,
+.user_handle button:hover {
   color :rgb(118, 228, 98);
   background-color: rgba(67, 235, 95, 0.2); 
   transform: scale(1.1);
 }
 
-.dashboard_content {
+.user_dashboard_content {
   margin-left:200px;
   background-color: #fff;
 }
 
-.dashboard_main_content {
+.user_dashboard_main_content {
   /* display: flex;
   justify-content: space-between;
   align-items: center; */
@@ -77,7 +77,7 @@
   border-radius: 3px;
 }
 
-.navbar {
+.user_navbar {
    box-shadow: 0px 10px 15px -3px rgba(0,0,0,0.1);
   background-color: #ffffff;
   padding: 10px 20px;
@@ -90,19 +90,19 @@
   align-items: center; 
 }
 
-.navbar .profile {
+.user_navbar .user_profile {
   display: flex;
   align-items: center;
 }
 
-.navbar .profile img {
+.user_navbar .user_profile img {
   width: 30px;
   height: 30px;
   border-radius: 50%;
   margin-right: 10px;
 }
 
-.navbar .profile span {
+.user_navbar .user_profile span {
   font-weight: bold;
   color: #000;
   font-size: 14px;

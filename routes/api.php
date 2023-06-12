@@ -26,9 +26,9 @@ Route::middleware('auth:sanctum')->group(function(){
     });
 
     //for voting
-    // Route::post('polls/vote', [PollController::class, 'vote']);
+     Route::post('polls/vote', [PollController::class, 'vote']);
     //Route::get('/polls/{id}',[PollController::class,'show']);
-    //Route::get('/polls',[PollController::class,'index']); 
+    Route::get('/polls',[PollController::class,'index']); 
 
 
 });
@@ -46,8 +46,8 @@ Route::post("/login",[AuthController::class,'login']);
 
 
 //temporary route for testing
-Route::post('polls/vote',[PollController::class,'vote']); //vote
-Route::get('/polls',[PollController::class,'index']);    //show all polls
+//Route::post('polls/vote',[PollController::class,'vote']); //vote
+//Route::get('/polls',[PollController::class,'index']);    //show all polls
 // Route::post('/polls',[PollController::class,'store']);  //create poll
 Route::get('/polls/{id}',[PollController::class,'show']); //show poll individual
 //Route::delete('/polls/{poll}',[PollController::class,'destroy']); //delete poll

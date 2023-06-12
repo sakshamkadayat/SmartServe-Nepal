@@ -1,6 +1,6 @@
 import { Outlet ,NavLink} from "react-router-dom";
 import { useStateContext } from "../context/ContextProvider";
-import adminProfileIamge from "../assets/admin_profile.png";
+import adminProfileIamge from "../assets/admin_profile.webp";
 import { Navigate } from "react-router-dom";
 import axiosClient from "../axios-client";
 import "../styles/adminlayout.css"

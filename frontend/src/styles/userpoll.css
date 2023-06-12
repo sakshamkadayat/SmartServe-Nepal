@@ -1,0 +1,6 @@
+.active_polls_options{
+    border:1px solid red;
+}
+.active_polls_options:hover{
+    transform: scale(1.1);
+}
