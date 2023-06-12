@@ -1,0 +1,13 @@
+.user_dash_hero{
+    border-radius: 5px;
+    padding:20px;
+    height: 35vh;
+    background-image: url(../assets/user_db_bg.webp);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.user_dash_hero >h1{
+     background-image: linear-gradient(to right top, #001111, #103031, #165255, #19777c, #179ea6, #12a39d, #27a890, #40ab81, #5d8842, #6a6213, #6b3a02, #5f0b0b);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

@@ -123,8 +123,7 @@ class PollController extends Controller
             'poll_id' => 'required|integer',
             'poll_option_id' => 'required|integer',
         ]);
-        // $userId = Auth::user()->id; 
-        $userId = 5;
+         $userId = Auth::user()->id; 
         $pollId = $request->input('poll_id');
         $pollOptionId = $request->input('poll_option_id');
         // Check if the user has already voted for this poll
@@ -207,6 +206,15 @@ class PollController extends Controller
                 'status' => 404
             ]);
         }
+        $current_time = strtotime(date('Y-m-d H:i:s'));
+        foreach ($polls as $poll) {
+            $end_time = strtotime($poll->end_date);
+            if ($end_time < $current_time) {
+                $poll->status = 'off';
+                $poll->save();
+            }
+        }
+        
         $polls_with_votes_percentage= $polls->map(function ($poll) {
             $totalVotes = $poll->pollOptions->sum('votes_count');
                 $pollOptionsWithPercentage = $poll->pollOptions->map(function ($option) use ($totalVotes) {
