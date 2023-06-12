@@ -3,15 +3,13 @@ import "../../styles/polls.css";
 import { v4 as uuid } from "uuid";
 import axiosClient from "../../axios-client";
 import PreLoader from "../../components/Preloader";
-import { formatDistanceToNow, parseISO } from "date-fns";
 import { FaRegTrashAlt, FaPlus, FaRegPaperPlane } from "react-icons/fa";
-import { useStateContext } from "../../context/ContextProvider";
+import { handleError,handleSuccess,updateRemainingTimes } from "../../utils/globalFunctions";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import {motion, AnimatePresence} from 'framer-motion'
 
 const Polls = () => {
-    const { handleSuccess, handleError } = useStateContext();
     const [allPolls, setAllPolls] = useState([]);
     const [loading, setLoading] = useState(false);
     const [formData, setFormData] = useState({
@@ -30,16 +28,6 @@ const Polls = () => {
         setFormIsOpen(!formIsOpen);
     };
       
-    const updateRemainingTimes = () => {
-        setAllPolls((prev) => {
-            const updatedPolls = prev.map((poll) => {
-                const timeRemaining = calculateRemainingTime(poll.end_date);
-                return { ...poll, remainingTime: timeRemaining };
-            });
-            // console.log(updatedPolls)
-            return updatedPolls;
-        });
-    };
 
     useEffect(() => {
         const fetchData = async () => {
@@ -49,7 +37,7 @@ const Polls = () => {
                 setLoading(false);
                 const allPolls = response.data.data;
                 setAllPolls(allPolls);
-                updateRemainingTimes();
+                updateRemainingTimes(setAllPolls);
             } catch (error) {
                 setLoading(false);
                 console.log(error);
@@ -89,7 +77,7 @@ const Polls = () => {
             });
             setSubmitCount(submitCount + 1);
         } catch (error) {
-            handleError("Poll creation failed");
+            handleError(error.response.data.message);
             //console.log(error.response.data.message);
         }
     };
@@ -148,17 +136,12 @@ const Polls = () => {
             handleSuccess(response.data.message);
             setSubmitCount(submitCount + 1);
         } catch (error) {
-            handleError("Something went wrong!!");
+            handleError(error.response.data.message);
             // console.log(error.response.data.message);
         }
     };
 
-    const calculateRemainingTime = (endDate) => {
-        const formattedDate= endDate.replace(" ","T").replace(":00","");
-        const end = parseISO(formattedDate);
-        const remainingTime = formatDistanceToNow(end);
-        return remainingTime;
-    }
+
     
     //framer_moiton
     const sectionVariants = {

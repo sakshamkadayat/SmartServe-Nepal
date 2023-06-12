@@ -1,6 +1,86 @@
-.active_polls_options{
-    border:1px solid red;
+.user_poll_container{
+    width: 100%;
+    padding: 9px 10px;
 }
-.active_polls_options:hover{
-    transform: scale(1.1);
+.user_notvoted_polls{
+    width: 100%;
+    padding: 9px 10px;
+}
+.user_notvoted_polls h3{
+     text-align: center;
+    margin: 20px 0px;
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: #71db5b;
+   background-color: rgba(67, 235, 95, 0.2);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+.active_polls_box{
+      margin: 10px 0px;
+    padding: 30px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.2);
+}
+.already_voted{
+   margin: 10px 0px;
+    width: 200px;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #d6272766;
+    text-align: center;
+}
+.vote_info_user{
+     margin: 10px 0px;
+    width: 200px;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: rgba(63, 66, 238, 0.4);
+    text-align: center;
+}
+.active_polls_box{
+     border:1px solid #71db5b;
+}
+.voted_active_poll_box{
+     border:1px solid #c65bdb;
+     position: relative;
+}
+.piechat_svg{
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    height: 40px;
+    border-radius: 5px;
+    width: 40px;
+    padding:5px;
+    background-color: rgba(57, 54, 54, 0.4);
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+.piechat_svg > svg{
+    width: 100%;
+    height: 100%;
+     color:#71db5b;
+}
+
+.active_polls_options{
+    margin: 10px 0px;
+    padding: 10px;
+    border-radius: 5px;
+ background: linear-gradient(90deg, rgba(152,240,140,1) 19%, rgba(146,47,233,1) 100%);
+    color: black;
+    border: none;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+.active_polls_options:hover,.piechat_svg:hover{
+    transform: scale(1.04);
+}
+.piechart_contianer{
+    max-width: 500px;
+    margin: 0px auto;
+    padding: 20px;
+    border-radius: 5px;
 }

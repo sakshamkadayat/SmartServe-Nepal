@@ -43,12 +43,22 @@ class PollController extends Controller
     
         //getting all the active polls voted and not voted by the user
         $returned_poll_and_vote_data = getUserAssociatedActivePolls();
+        $user_voted = $returned_poll_and_vote_data['user_voted'];
+        $user_not_voted = $returned_poll_and_vote_data['user_not_voted'];
+        if ($user_voted->isEmpty() && $user_not_voted->isEmpty()) {
+            return response()->json([
+                'message' => 'No polls available currently',
+                'status' => 404
+            ]);
+        }
+         $userVotedPollwithTotal = getPollDataWithTotalVotes($user_voted);
+            $userNotVotedPollwithTotal = getPollDataWithTotalVotes($user_not_voted);
 
         return response()->json([
             'message' => 'Polls fetched successfully',
             'status' => 200,
-            'user_voted' => $returned_poll_and_vote_data['user_voted'],
-            'user_not_voted' => $returned_poll_and_vote_data['user_not_voted'],
+            'user_voted' => $userVotedPollwithTotal,
+            'user_not_voted' => $userNotVotedPollwithTotal,
         ]);
     }
 
@@ -215,16 +225,7 @@ class PollController extends Controller
             }
         }
         
-        $polls_with_votes_percentage= $polls->map(function ($poll) {
-            $totalVotes = $poll->pollOptions->sum('votes_count');
-                $pollOptionsWithPercentage = $poll->pollOptions->map(function ($option) use ($totalVotes) {
-                    $option->percentage = ($totalVotes > 0) ? round(($option->votes_count / $totalVotes) * 100, 2) : 0;
-                    return $option;
-                });
-                $poll->poll_options = $pollOptionsWithPercentage;
-                $poll->totalVotes = $totalVotes;
-            return $poll;
-        });
+        $polls_with_votes_percentage= getPollDataWithTotalVotes($polls);
         return response()->json([
             'message' => 'Polls fetched successfully',
             'status' => 200,
