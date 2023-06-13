@@ -1,12 +1,12 @@
 import { Outlet, Navigate } from "react-router-dom";
 import axiosClient from "../axios-client";
 import "../styles/login.css";
-import logo from "../../src/images/goverment_logo.png";
+import logo from "../../src/images/goverment_logo.webp";
 import { useStateContext } from "../context/ContextProvider";
-import hammer from "../../src/images/hammer.jpg"
-import flags from "../../src/images/flg.jpg";
-import vote from "../../src/images/vote.png";
-import poll from "../../src/images/poll.png";
+import hammer from "../../src/images/hammer.webp"
+import flags from "../../src/images/flg.webp";
+import vote from "../../src/images/vote.webp";
+import poll from "../../src/images/poll.webp";
 const GuestLayout = () => {
     const { token } = useStateContext();
     if (token) {
@@ -17,7 +17,7 @@ const GuestLayout = () => {
             <div className="form-maincontainer">
                 <div className="container-upper">
                     <img src={logo} alt="logo" />
-                    <p style={{fontSize:'1.2rem'}} className="global-font">"Empowering You with Goverment Notices"</p>
+                    <p style={{fontSize:'1.2rem'}} className="global-font">"SmartServeNepal-Interacting with Government"</p>
                 </div>
                 <div className="container-outlet">
                     <Outlet />

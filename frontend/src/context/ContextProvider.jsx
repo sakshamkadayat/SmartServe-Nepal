@@ -2,6 +2,8 @@ import { useContext, createContext, useState } from "react";
 const stateContext = createContext({
     user: null,
     token: null,
+    toastMessage: null,
+    settingToastMessage: () => {},
     settingToken: () => {},
     settingUser: () => {},
 });
@@ -9,8 +11,17 @@ const stateContext = createContext({
 export const ContextProvider = ({ children }) => {
     const [user, setUser] = useState(JSON.parse(sessionStorage.getItem("user")));
     const [token, setToken] = useState(sessionStorage.getItem("access_token"));
+    const [toastMessage, setToastMessage] = useState(localStorage.getItem("toastMessage"));
     // const [token,setToken] = useState(null);
 
+    const settingToastMessage = (message) => {
+        setToastMessage(message);
+        if (message) {
+            localStorage.setItem("toastMessage", message);
+        } else {
+            localStorage.removeItem("toastMessage");
+        }
+    };
     const settingToken = (token) => {
         setToken(token);
         if (token) {
@@ -37,6 +48,8 @@ export const ContextProvider = ({ children }) => {
     return (
         <stateContext.Provider
             value={{
+                toastMessage,
+                settingToastMessage,
                 user,
                 settingUser,
                 token,

@@ -38,18 +38,12 @@ const handleLogout = (e) => {
       },
       {
           id: 2,
-          name: "Surveys",
-          icon: <FcSurvey />,
-          link: "/survey",
-      },
-      {
-          id: 3,
           name: "Polls",
           icon: <FaChartBar />,
           link: "/polls",
       },
       {
-          id: 4,
+          id: 3,
           name: "Policy Feedbacks",
           icon: <VscFeedback />,
           link: "/feedbacks",

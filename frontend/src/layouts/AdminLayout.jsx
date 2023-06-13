@@ -39,18 +39,12 @@ const AdminLayout = () => {
        },
        {
            id: 2,
-           name: "Surveys",
-           icon: <FcSurvey />,
-           link: "/admin/surveys",
-       },
-       {
-           id: 3,
            name: "Polls",
            icon: <FaChartBar />,
            link: "/admin/polls",
        },
        {
-           id: 4,
+           id: 3,
            name: "Policy Feedbacks",
            icon: <VscFeedback />,
            link: "/admin/policy_feedbacks",

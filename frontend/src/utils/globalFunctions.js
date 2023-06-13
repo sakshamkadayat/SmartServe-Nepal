@@ -7,9 +7,16 @@ export const handleSuccess = (msg) => {
         position: toast.POSITION.TOP_RIGHT,
     });
 };
-export const handleError = (msg) => {
+export const handleError = (errorData) => {
     // API call resulted in an error
-    toast.error(msg, { position: toast.POSITION.TOP_RIGHT });
+    let errorMessage = "";
+     for (const key in errorData) {
+         if (errorData.hasOwnProperty(key)) {
+             const values = errorData[key].join(", ");
+             errorMessage += `${values}\n`;
+         }
+     }
+    toast.error(errorMessage, { position: toast.POSITION.TOP_RIGHT });
 };
 
 //get polls with expiry date
