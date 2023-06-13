@@ -11,7 +11,6 @@ import Register from './views/Register';
 
 //admin components import
 import Dashboard from './views/admin/Dashboard';
-import Surveys from './views/admin/Surveys';
 import Polls from './views/admin/Polls';
 import PolicyFeedback from './views/admin/PolicyFeedback';
 
@@ -20,7 +19,6 @@ import Page404 from './views/Page404';
 
 //user components import
 import Home from './views/Home';
-import SurveyUser from './views/ServeyUser';
 import PollsUser from './views/PollsUser';
 import FeedbackUser from './views/FeedbackUser';
 
@@ -38,10 +36,6 @@ const router = createBrowserRouter([
                 element : <Navigate to="/" />
             },
             {
-                path : '/survey',
-                element : <SurveyUser />
-            },
-            {
                 path:'/polls',
                 element:<PollsUser/>
             },
@@ -49,8 +43,6 @@ const router = createBrowserRouter([
                 path:'/feedbacks',
                 element: <FeedbackUser/>
             }
-
-
         ]
     },
     {
@@ -78,10 +70,6 @@ const router = createBrowserRouter([
             {
                 path : 'dashboard',
                 element : <Dashboard />
-            },
-            {
-                path : 'surveys',
-                element : <Surveys />
             },
             {
                 path : 'polls',

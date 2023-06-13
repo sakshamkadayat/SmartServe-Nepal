@@ -1,11 +1,15 @@
 import "../styles/register.css";
 import { useRef,useState } from "react";
 import {Link} from "react-router-dom"
-import { useStateContext } from "../context/ContextProvider";
 import axiosClient from "../axios-client"
+import { handleError,handleSuccess } from "../utils/globalFunctions";
+import { ToastContainer } from "react-toastify";
+import { useStateContext } from "../context/ContextProvider";
+
+
 
 const Register = () => {
-    const {settingUser,settingToken} = useStateContext();
+    const { settingToastMessage } = useStateContext();
     const nameRef = useRef();
     const citizenshipRef = useRef();
     const emailRef = useRef();
@@ -33,15 +37,18 @@ const Register = () => {
         }
         axiosClient.post('/register',payLoad)
         .then(()=>{
+            settingToastMessage("Registration Successfull");
            window.location.href = "/guest/login";
         })
         .catch((error)=>{
-            console.log(error.response.data.errors);
+            handleError(error.response.data.errors);
+            //console.log(error.response.data.errors);
         })
     }
 
     return (
         <div className="container">
+         <ToastContainer />
             <div className="title">Registration</div>
             <div className="content">
                 <form action="#" onSubmit={handleSubmit}>
@@ -52,7 +59,6 @@ const Register = () => {
                                 ref={nameRef}
                                 type="text"
                                 placeholder="Enter your full name"
-                                required
                             />
                         </div>
                         <div className="input-box">
@@ -61,16 +67,13 @@ const Register = () => {
                                 ref={citizenshipRef}
                                 type="text"
                                 placeholder="Enter your citizenship number"
-                                required
                             />
                         </div>
                         <div className="input-box">
                             <span className="details">Email</span>
                             <input
                                 ref={emailRef}
-                                type="email"
                                 placeholder="Enter your email"
-                                required
                             />
                         </div>
                         <div className="input-box">
@@ -79,7 +82,6 @@ const Register = () => {
                                 ref={addressRef}
                                 type="text"
                                 placeholder="Enter your address"
-                                required
                             />
                         </div>
                         <div className="input-box">
@@ -90,7 +92,6 @@ const Register = () => {
                                 maxLength={15}
                                 min={10}
                                 placeholder="Enter your contact number"
-                                required
                             />
                         </div>
                         <div className="input-box">
